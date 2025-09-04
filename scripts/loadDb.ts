@@ -17,11 +17,11 @@ const {
   ASTRA_DB_APPLICATION_TOKEN,
 } = process.env;
 
-const llm = new ChatGoogleGenerativeAI({
-  apiKey: GOOGLE_API_KEY!,
-  model: "gemini-1.5-flash",
-  temperature: 0.7,
-});
+// const llm = new ChatGoogleGenerativeAI({
+//   apiKey: GOOGLE_API_KEY!,
+//   model: "gemini-1.5-flash",
+//   temperature: 0.7,
+// });
 const embeddings = new GoogleGenerativeAIEmbeddings({
   apiKey: GOOGLE_API_KEY!,
   modelName: "text-embedding-004",

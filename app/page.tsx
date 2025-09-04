@@ -9,9 +9,9 @@ import LoadingBubble from "./components/LoadingBubble";
 import { UIMessage } from "@ai-sdk/react";
 import Bubble from "./components/Bubble";
 const Home = () => {
-  const { messages, sendMessage } = useChat();
+  const { status,messages, sendMessage, } = useChat();
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const isLoading = status === 'submitted' || status === 'streaming';
 
   //this is for the prompt suggestion row
   const handlePrompt = (prompt: string) => {
@@ -52,10 +52,10 @@ const Home = () => {
           </>
         ) : (
           <>
-            {loading && <LoadingBubble />}
+            {isLoading && <LoadingBubble />}
             {messages.map((c, i) => (
               <div className="flex flex-col" key={i}>
-              <Bubble key={i}  message={c}/>
+              <Bubble  message={c}/>
               </div>
             ))}
           </>
@@ -66,7 +66,7 @@ const Home = () => {
             if (input.trim()) {
               sendMessage({ text: input });
               setInput("");
-              setLoading(true);
+              
             }
           }}
           className=" flex justify-between gap-5 items-center w-full max-w-2xl mx-auto mt-20 bg-white h-14 rounded-2xl p-5"
